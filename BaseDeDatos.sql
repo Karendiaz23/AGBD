@@ -119,13 +119,17 @@ CREATE TABLE "" (
 Esta base de datos sirve para un emprendimiento de galletitas que no tienen un local
 ayuda a controlar la cantidad de galletitas que pide cada cliente, muestra los precios de todas
 la galetitas que venden, la informacion de lo clientes.
-
 Se la venderia a un emprediminto que recien arranca y no sabe como organizar
 los pedidos y precios.
 */
 
 
 10/06
+
+INSERT INTO Metodo_Pagos(Nombre)
+VALUES ("Efectivo"), ("Tranferencia"),( "Tarjeta");
+
+
 
 CREATE TABLE Categorias(
 CategoriasID INTEGER ,
@@ -187,3 +191,43 @@ CREATE TABLE "Pedidos" (
    FOREIGN KEY("GalletitasID") REFERENCES Galletitas("GalletitasID"),
    PRIMARY KEY("PedidosID" AUTOINCREMENT)
 );
+
+
+17/06
+
+
+
+
+
+CREATE TABLE "Metodo_Pagos" (
+	"Metodo_PagosID"	INTEGER,
+	"Nombre"	VARCHAR(50) NOT NULL,
+	PRIMARY KEY("Metodo_PagosID" AUTOINCREMENT)
+);
+
+CREATE TABLE "Pagos" (
+	"PagosID"	INTEGER,
+	"Monto"	INT,
+	"Metodo_Id" INTEGER NOT NULL,
+	PRIMARY KEY("PagosID" AUTOINCREMENT),
+   FOREIGN KEY("Metodo_Id") REFERENCES "Metodo_Pagos"("Metodo_PagosID")
+);
+
+INSERT INTO Pagos (Monto,Metodo_Id)
+VALUES(2000,3),
+(1500,1);
+
+
+INSERT INTO Pagos (Monto,Metodo_Id)
+VALUES(2000,3),
+(1500,1),
+(2000,2),
+(1500,3),
+(2000,2),
+(1500,1),
+(2000,1),
+(1500,2),
+(2000,3),
+(1500,3);
+
+
